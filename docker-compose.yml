@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    networks:
+      - web-mysql-net
+    depends_on:
+      - mysql-server
+
+  mysql-server:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: tp2murgodb
+      MYSQL_USER: mmurgo
+      MYSQL_PASSWORD: marce123
+    ports:
+      - "3306:3306"
+    networks:
+      - web-mysql-net
+
+networks:
+  web-mysql-net:
